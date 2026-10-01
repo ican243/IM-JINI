@@ -1,0 +1,21 @@
+# imjini.com 랜딩 페이지 (순수 PHP)
+# server_name을 명시해야 king-custom-domains(80 default_server)로 빠지지 않는다.
+server {
+    listen 80;
+    listen [::]:80;
+    server_name imjini.com www.imjini.com;
+
+    root /var/www/imjini/public;
+    index index.php index.html;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/run/php/php8.3-fpm.sock;
+    }
+
+    location ~ /\.(?!well-known) { deny all; }
+}
