@@ -17,6 +17,6 @@
             </div>
         </div>
     </footer>
-    <script src="<?= url('assets/js/main.js') ?>?v=<?= e($site['version']) ?>"></script>
+    <script src="<?= url('assets/js/main.js') ?>?v=<?= e($site['version']) ?>" defer></script>
 </body>
 </html>

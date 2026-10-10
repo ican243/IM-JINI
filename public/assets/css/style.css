@@ -63,6 +63,9 @@ html {
 }
 
 body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;   /* 내용이 짧아도 푸터가 화면 맨 아래에 붙게 */
     margin: 0;
     background: var(--color-bg);
     color: var(--color-text);
@@ -79,6 +82,10 @@ a:focus-visible,
 button:focus-visible {
     outline: 2px solid var(--color-point);
     outline-offset: 2px;
+}
+
+main {
+    flex: 1 0 auto;   /* 남는 높이를 본문이 차지 */
 }
 
 img {
@@ -476,6 +483,11 @@ img {
     background: var(--color-bg-soft);
 }
 
+.project-shot picture {
+    display: block;
+    height: 100%;
+}
+
 .project-shot img {
     width: 100%;
     height: 100%;
@@ -565,7 +577,7 @@ img {
 }
 
 .contact-box .section-lead {
-    color: rgba(255, 255, 255, 0.85);
+    color: #fff;   /* 보라 배경 위 글자 대비 확보 (반투명 흰색은 기준 미달) */
 }
 
 .contact-box .btn-group {
@@ -574,7 +586,7 @@ img {
 
 .contact-email {
     margin: 20px 0 0;
-    color: rgba(255, 255, 255, 0.85);
+    color: #fff;
     font-size: 0.9375rem;
     user-select: all;   /* 한 번 클릭으로 주소 전체 선택 */
 }

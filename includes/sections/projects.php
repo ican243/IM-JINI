@@ -1,5 +1,5 @@
 <?php
-// image: 실제 화면 캡처 (비어 있으면 '비공개' 표시), link: 사이트 주소, github: 저장소 주소 (비어 있으면 버튼 안 보임)
+// image: 실제 화면 캡처 jpg (같은 이름의 .webp 가 있으면 먼저 사용, 비어 있으면 '비공개' 표시), link: 사이트 주소, github: 저장소 주소 (비어 있으면 버튼 안 보임)
 $projects = [
     [
         'title'  => 'LiveF',
@@ -42,7 +42,13 @@ $projects = [
                 <article class="card project">
                     <?php if ($p['image']): ?>
                         <div class="project-shot">
-                            <img src="<?= url($p['image']) ?>" alt="<?= e($p['title']) ?> 실제 화면" width="1280" height="800" loading="lazy">
+                            <?php $webp = preg_replace('/\.jpg$/', '.webp', $p['image']); ?>
+                            <picture>
+                                <?php if ($webp !== $p['image'] && is_file(__DIR__ . '/../../public/' . $webp)): ?>
+                                    <source srcset="<?= url($webp) ?>" type="image/webp">
+                                <?php endif; ?>
+                                <img src="<?= url($p['image']) ?>" alt="<?= e($p['title']) ?> 실제 화면" width="800" height="500" loading="lazy">
+                            </picture>
                         </div>
                     <?php else: ?>
                         <div class="project-shot is-private">

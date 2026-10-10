@@ -21,7 +21,6 @@
 
     <link rel="icon" href="<?= url('assets/img/favicon.svg') ?>" type="image/svg+xml">
     <link rel="apple-touch-icon" href="<?= url('assets/img/apple-touch-icon.png') ?>">
-    <link rel="preload" href="<?= url('assets/fonts/Pretendard-Regular.subset.woff2') ?>" as="font" type="font/woff2" crossorigin>
     <script>document.documentElement.classList.add('js');</script>
     <link rel="stylesheet" href="<?= url('assets/css/style.css') ?>?v=<?= e($site['version']) ?>">
 </head>

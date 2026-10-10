@@ -18,6 +18,11 @@ server {
         try_files $uri $uri/ =404;
     }
 
+    # 글꼴은 바뀌지 않는 파일이라 1년 캐시
+    location ^~ /assets/fonts/ {
+        expires 1y;
+    }
+
     location = /index.php {
         include snippets/fastcgi-php.conf;
         fastcgi_pass unix:/run/php/php8.3-fpm.sock;
