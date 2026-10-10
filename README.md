@@ -12,7 +12,8 @@ public/                 웹 루트 (nginx root)
   assets/
     css/style.css
     js/main.js          모바일 메뉴, 이메일 복사, Story 등장 효과
-    fonts/              Pretendard (서브셋)
+    css/pretendard.css  글꼴 규칙 (Pretendard 가변 글꼴, 글자 묶음별로 필요한 것만 받음)
+    fonts/pretendard/   글꼴 묶음 92개
     img/                공유 이미지(og.png), 파비콘
     img/projects/       프로젝트 화면 캡처
 includes/               웹에서 접근 불가
@@ -45,4 +46,4 @@ deploy/nginx/           nginx 설정 사본
 
 ## 글꼴
 
-Pretendard (SIL Open Font License 1.1) - `public/assets/fonts/LICENSE.txt`
+Pretendard 1.3.9 가변 글꼴 dynamic subset (SIL Open Font License 1.1) - `public/assets/fonts/pretendard/LICENSE.txt`

@@ -1,33 +1,4 @@
-/* ==========================================================
-   글꼴 (Pretendard, 자주 쓰는 한글 2,350자 + 영문)
-   ========================================================== */
-@font-face {
-    font-family: 'Pretendard';
-    font-weight: 400;
-    font-display: swap;
-    src: url('../fonts/Pretendard-Regular.subset.woff2') format('woff2');
-}
-
-@font-face {
-    font-family: 'Pretendard';
-    font-weight: 600;
-    font-display: swap;
-    src: url('../fonts/Pretendard-SemiBold.subset.woff2') format('woff2');
-}
-
-@font-face {
-    font-family: 'Pretendard';
-    font-weight: 700;
-    font-display: swap;
-    src: url('../fonts/Pretendard-Bold.subset.woff2') format('woff2');
-}
-
-@font-face {
-    font-family: 'Pretendard';
-    font-weight: 800;
-    font-display: swap;
-    src: url('../fonts/Pretendard-ExtraBold.subset.woff2') format('woff2');
-}
+/* 글꼴은 pretendard.css (Pretendard 가변 글꼴, 글자 묶음별로 필요한 것만 받음) */
 
 /* ==========================================================
    디자인 기준값
@@ -41,7 +12,7 @@
     --color-point: #6c4cf1;
     --color-point-dark: #5a3bd9;
 
-    --font-base: 'Pretendard', -apple-system, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+    --font-base: 'Pretendard Variable', -apple-system, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
 
     --ease: cubic-bezier(0.23, 1, 0.32, 1);   /* 빠르게 출발해서 부드럽게 멈춤 */
 

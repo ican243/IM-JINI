@@ -22,6 +22,7 @@
     <link rel="icon" href="<?= url('assets/img/favicon.svg') ?>" type="image/svg+xml">
     <link rel="apple-touch-icon" href="<?= url('assets/img/apple-touch-icon.png') ?>">
     <script>document.documentElement.classList.add('js');</script>
+    <link rel="stylesheet" href="<?= url('assets/css/pretendard.css') ?>?v=<?= e($site['version']) ?>">
     <link rel="stylesheet" href="<?= url('assets/css/style.css') ?>?v=<?= e($site['version']) ?>">
 </head>
 <body>
