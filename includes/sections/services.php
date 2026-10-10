@@ -14,22 +14,22 @@ $services = [
     ],
     [
         'title' => '운영·유지보수',
-        'desc'  => '이미 돌아가는 서비스를 넘겨받아 고치고, 장애에 대응해요',
+        'desc'  => '이미 돌아가는 서비스를 넘겨받아 고치고, 장애에 대응합니다',
     ],
 ];
 ?>
 <section id="services" class="section section-soft">
     <div class="container">
-        <h2 class="section-title">이런 걸 만들어요</h2>
+        <h2 class="section-title">이런 것을 만듭니다</h2>
 
-        <div class="grid grid-2">
+        <ol class="service-list">
             <?php foreach ($services as $i => $s): ?>
-                <article class="card">
-                    <span class="card-num"><?= sprintf('%02d', $i + 1) ?></span>
-                    <h3 class="card-title"><?= e($s['title']) ?></h3>
-                    <p class="card-desc"><?= e($s['desc']) ?></p>
-                </article>
+                <li class="service-item">
+                    <span class="service-num"><?= sprintf('%02d', $i + 1) ?></span>
+                    <h3 class="service-title"><?= e($s['title']) ?></h3>
+                    <p class="service-desc"><?= e($s['desc']) ?></p>
+                </li>
             <?php endforeach; ?>
-        </div>
+        </ol>
     </div>
 </section>

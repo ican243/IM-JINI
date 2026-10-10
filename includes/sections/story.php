@@ -1,23 +1,19 @@
-<section id="story" class="section">
-    <div class="container narrow">
-        <h2 class="section-title">I'M JINI, 나는 지니</h2>
-        <p class="section-lead">IM JINI는 두 가지로 읽혀요.</p>
+<section id="story" class="section story">
+    <div class="container">
+        <div class="manifesto" data-reveal>
+            <p class="reveal manifesto-eyebrow">I'M JINI</p>
+            <h2 class="reveal manifesto-title">나는 지니</h2>
 
-        <dl class="story-list">
-            <div>
-                <dt>I'M JINI</dt>
-                <dd>나는 지니.</dd>
-            </div>
-            <div>
-                <dt>IM JI NI</dt>
-                <dd>제 성 '임'과 이름에서 한 글자, 그리고 지니.</dd>
-            </div>
-        </dl>
+            <p class="reveal manifesto-muted">마법은 없지만</p>
+            <p class="reveal manifesto-strong">떠오른 생각을 <em>현실</em>로 만듭니다</p>
 
-        <p class="story-text">
-            그리고 지니는 소원을 들어주는 램프의 요정이기도 해요.<br>
-            "이런 게 있으면 좋겠다"는 말을 실제로 만들어 내는 것,<br>
-            그게 <strong>IM JINI</strong>가 하는 일이에요.
-        </p>
+            <span class="reveal manifesto-divider" aria-hidden="true"></span>
+
+            <p class="reveal manifesto-step">아이디어를 <strong>설계</strong>하고</p>
+            <p class="reveal manifesto-step"><strong>화면</strong>에 담고</p>
+            <p class="reveal manifesto-step"><strong>서비스</strong>로 완성합니다</p>
+
+            <p class="reveal manifesto-sign"><span class="logo-im">IM</span> JINI</p>
+        </div>
     </div>
 </section>

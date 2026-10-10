@@ -9,11 +9,11 @@ define('INC_PATH', __DIR__);
 $site = [
     'name'      => 'IM JINI',
     'slogan'    => '시작은 당신이, 만드는 건 지니가.',
-    'slogan_en' => 'Just start. You can.',
-    'intro'     => '머릿속 아이디어를 실제로 돌아가는 웹 서비스로 만들어 드려요.',
+    'slogan_en' => 'Just start. I’m with you.',
+    'intro'     => '머릿속 아이디어를 실제로 돌아가는 웹 서비스로 만들어 드립니다.',
     'email'     => 'ican243@gmail.com',
     'github'    => 'https://github.com/ican243',
-    'version'   => 2,   // CSS, JS 를 바꾸면 숫자를 올린다 (브라우저 캐시 갱신)
+    'version'   => 6,   // CSS, JS 를 바꾸면 숫자를 올린다 (브라우저 캐시 갱신)
 ];
 
 // 사이트 안 주소 만들기 (BASE_PATH 를 앞에 붙임)
@@ -26,4 +26,12 @@ function url(string $path = ''): string
 function e(?string $str): string
 {
     return htmlspecialchars($str ?? '', ENT_QUOTES, 'UTF-8');
+}
+
+// 전체 주소 (공유 미리보기용)
+// SERVER_NAME 은 nginx 의 server_name 값이라 요청 헤더로 바꿀 수 없다
+function site_url(string $path = ''): string
+{
+    $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+    return $scheme . '://' . $_SERVER['SERVER_NAME'] . url($path);
 }
