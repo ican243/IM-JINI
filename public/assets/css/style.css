@@ -510,6 +510,104 @@ img {
 }
 
 /* ==========================================================
+   프로젝트 상세
+   ========================================================== */
+.detail-head {
+    padding-bottom: 40px;
+}
+
+.detail-back {
+    display: inline-block;
+    margin-bottom: 32px;
+    color: var(--color-muted);
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s var(--ease);
+}
+
+.detail-back:hover {
+    color: var(--color-point);
+}
+
+.detail-title {
+    margin: 0;
+    font-size: clamp(2.25rem, 6vw, 3.25rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+}
+
+.detail-tag {
+    margin: 8px 0 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.detail-meta {
+    margin: 8px 0 0;
+    color: var(--color-muted);
+}
+
+/* 카드용 여백을 풀고, 상세에서는 테두리 있는 큰 화면으로 */
+.project-detail .project-shot {
+    margin: 0;
+    border: 1px solid var(--color-line);
+    border-radius: 16px;
+}
+
+.detail-body {
+    padding-top: 64px;
+}
+
+.detail-empty {
+    margin: 0;
+    color: var(--color-muted);
+    text-align: center;
+}
+
+.detail-next {
+    padding-top: 0;
+}
+
+.detail-next-label {
+    margin: 0 0 12px;
+    color: var(--color-muted);
+    font-size: 0.875rem;
+    font-weight: 700;
+}
+
+.detail-next-list {
+    margin: 0 0 40px;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--color-text);
+}
+
+.detail-next-list a {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--color-line);
+    text-decoration: none;
+    transition: color 0.2s var(--ease);
+}
+
+.detail-next-list strong {
+    font-size: 1.25rem;
+    font-weight: 800;
+}
+
+.detail-next-list span {
+    color: var(--color-muted);
+}
+
+.detail-next-list a:hover strong {
+    color: var(--color-point);
+}
+
+/* ==========================================================
    404
    ========================================================== */
 .not-found {

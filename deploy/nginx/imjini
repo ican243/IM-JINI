@@ -34,6 +34,22 @@ server {
         fastcgi_pass unix:/run/php/php8.3-fpm.sock;
     }
 
+    # 프로젝트 상세: /projects/linkr → project.php (주소의 linkr 를 PROJECT_SLUG 로 넘김)
+    location ~ ^/projects/([a-z0-9-]+)$ {
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root/project.php;
+        fastcgi_param PROJECT_SLUG $1;
+        fastcgi_pass unix:/run/php/php8.3-fpm.sock;
+    }
+
+    location ~ ^/projects/([a-z0-9-]+)/$ {
+        return 301 /projects/$1;
+    }
+
+    location ~ ^/projects/?$ {
+        return 301 /#projects;
+    }
+
     # 그 외 PHP 파일은 실행하지 않음
     location ~ \.php$ { return 404; }
 
