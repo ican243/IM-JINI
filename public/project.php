@@ -3,6 +3,7 @@
 // slug 는 nginx 가 주소에서 꺼내 PROJECT_SLUG 로 넘겨준다
 require_once __DIR__ . '/../includes/config.php';
 require_once INC_PATH . '/data/projects.php';
+require_once INC_PATH . '/picture.php';
 
 $slug = $_SERVER['PROJECT_SLUG'] ?? '';
 $p = $projects[$slug] ?? null;
@@ -13,14 +14,26 @@ if ($p === null) {
     exit;
 }
 
+$intro = $p['intro'] ?? $p['desc'];
+$shots = $p['shots'] ?? ($p['image'] ? [['file' => $p['image'], 'caption' => '메인 화면']] : []);
+// 아직 파일이 없는 화면은 숨긴다 (파일을 넣으면 자동으로 나타남)
+$shots = array_values(array_filter($shots, fn($s) => is_file(__DIR__ . '/' . $s['file'])));
+
 $page_title = $p['title'];
-$page_desc  = $p['tag'] . ' - ' . $p['desc'];
+$page_desc  = $p['tag'] . ' - ' . $intro;
 $page_path  = 'projects/' . $slug;
 if ($p['image']) {
     $page_image = $p['image'];
 }
 
 $body = INC_PATH . '/projects/' . $slug . '.php';
+
+// 화면 한 칸
+function shot(array $s, string $title, bool $lazy): void
+{
+    [$w, $h] = getimagesize(__DIR__ . '/' . $s['file']);   // 실제 이미지 크기
+    picture($s['file'], $title . ' ' . $s['caption'], $w, $h, $lazy);
+}
 
 require INC_PATH . '/header.php';
 ?>
@@ -33,30 +46,30 @@ require INC_PATH . '/header.php';
                 <h1 class="detail-title"><?= e($p['title']) ?></h1>
                 <span class="badge"><?= e($p['badge']) ?></span>
             </div>
-            <p class="detail-tag"><?= e($p['tag']) ?></p>
-            <p class="detail-meta"><?= e($p['period']) ?> · <?= e($p['team']) ?></p>
+            <p class="detail-intro"><?= e($intro) ?></p>
+            <?php if (!empty($p['note'])): ?>
+                <p class="detail-note"><?= e($p['note']) ?></p>
+            <?php endif; ?>
 
-            <ul class="tags">
-                <?php foreach ($p['stack'] as $tech): ?>
-                    <li class="tag"><?= e($tech) ?></li>
-                <?php endforeach; ?>
-            </ul>
-
-            <?php if ($p['link'] || $p['github']): ?>
-                <div class="project-links">
-                    <?php if ($p['link']): ?>
-                        <a href="<?= e($p['link']) ?>" target="_blank" rel="noopener">사이트 보기</a>
-                    <?php endif; ?>
-                    <?php if ($p['github']): ?>
-                        <a href="<?= e($p['github']) ?>" target="_blank" rel="noopener">GitHub</a>
-                    <?php endif; ?>
+            <?php if ($p['link']): ?>
+                <div class="btn-group detail-actions">
+                    <a href="<?= e($p['link']) ?>" class="btn btn-primary" target="_blank" rel="noopener">사이트 보기</a>
                 </div>
             <?php endif; ?>
         </div>
     </header>
 
-    <div class="container narrow">
-        <?php require INC_PATH . '/project-shot.php'; ?>
+    <div class="container">
+        <?php if ($shots): ?>
+            <div class="shots shots-rest-<?= count($shots) - 1 ?>">
+                <?php foreach ($shots as $i => $s): ?>
+                    <figure class="shot<?= $i === 0 ? ' shot-main' : '' ?>">
+                        <?php shot($s, $p['title'], $i !== 0); ?>
+                        <figcaption><?= e($s['caption']) ?></figcaption>
+                    </figure>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
     </div>
 
     <div class="section detail-body">

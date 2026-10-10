@@ -6,31 +6,18 @@
         <div class="grid grid-3">
             <?php foreach ($projects as $slug => $p): ?>
                 <article class="card project">
-                    <?php require INC_PATH . '/project-shot.php'; ?>
+                    <a href="<?= url('projects/' . $slug) ?>" class="project-link">
+                        <?php require INC_PATH . '/project-shot.php'; ?>
 
-                    <div class="project-head">
-                        <h3 class="card-title"><?= e($p['title']) ?></h3>
-                        <span class="badge"><?= e($p['badge']) ?></span>
-                    </div>
-                    <p class="project-tag"><?= e($p['tag']) ?></p>
-                    <p class="card-desc"><?= e($p['desc']) ?></p>
-
-                    <ul class="tags">
-                        <?php foreach ($p['stack'] as $tech): ?>
-                            <li class="tag"><?= e($tech) ?></li>
-                        <?php endforeach; ?>
-                    </ul>
-
-                    <?php if ($p['link'] || $p['github']): ?>
-                        <div class="project-links">
-                            <?php if ($p['link']): ?>
-                                <a href="<?= e($p['link']) ?>" target="_blank" rel="noopener">사이트 보기</a>
-                            <?php endif; ?>
-                            <?php if ($p['github']): ?>
-                                <a href="<?= e($p['github']) ?>" target="_blank" rel="noopener">GitHub</a>
-                            <?php endif; ?>
+                        <div class="project-head">
+                            <h3 class="card-title"><?= e($p['title']) ?></h3>
+                            <span class="badge"><?= e($p['badge']) ?></span>
                         </div>
-                    <?php endif; ?>
+                        <p class="project-tag"><?= e($p['tag']) ?></p>
+                        <p class="card-desc"><?= e($p['desc']) ?></p>
+
+                        <span class="project-more">자세히 보기</span>
+                    </a>
                 </article>
             <?php endforeach; ?>
         </div>
