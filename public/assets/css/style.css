@@ -527,6 +527,33 @@ img {
 }
 
 /* ==========================================================
+   404
+   ========================================================== */
+.not-found {
+    display: flex;
+    align-items: center;
+    min-height: 60vh;
+    text-align: center;
+}
+
+.not-found .container {
+    width: 100%;
+}
+
+.not-found-code {
+    margin: 0 0 8px;
+    color: var(--color-point);
+    font-size: clamp(4rem, 14vw, 7rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1;
+}
+
+.not-found .btn-group {
+    justify-content: center;
+}
+
+/* ==========================================================
    Contact
    ========================================================== */
 .contact-box {

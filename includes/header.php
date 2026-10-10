@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= e($site['name']) ?></title>
+    <title><?= e(isset($page_title) ? $page_title . ' | ' . $site['name'] : $site['name']) ?></title>
+<?php if (!empty($noindex)): ?>
+    <meta name="robots" content="noindex">
+<?php endif; ?>
     <meta name="description" content="<?= e($site['slogan']) ?>">
 
     <!-- 공유 미리보기 (카카오톡, SNS) -->
@@ -34,10 +37,10 @@
             </button>
 
             <nav class="nav" id="site-nav">
-                <a href="#story">Story</a>
-                <a href="#services">Services</a>
-                <a href="#projects">Projects</a>
-                <a href="#contact" class="nav-cta">Contact</a>
+                <a href="<?= url() ?>#story">Story</a>
+                <a href="<?= url() ?>#services">Services</a>
+                <a href="<?= url() ?>#projects">Projects</a>
+                <a href="<?= url() ?>#contact" class="nav-cta">Contact</a>
             </nav>
         </div>
     </header>

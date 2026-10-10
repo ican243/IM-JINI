@@ -27,6 +27,8 @@ deploy/nginx/           nginx 설정 사본
 
 - PHP 8.x + nginx (php-fpm)
 - nginx `root` 를 `public/` 으로 지정한다. `deploy/nginx/imjini` 참고
+- 보안 헤더·압축은 `deploy/nginx/imjini-headers.conf` 를 include 한다
+  - `header.php` 의 인라인 스크립트를 바꾸면 CSP 의 sha256 값도 다시 계산해야 한다
 
 ## BASE_PATH
 

@@ -6,16 +6,31 @@ server {
     server_name imjini.com www.imjini.com;
 
     root /var/www/imjini/public;
-    index index.php index.html;
+    index index.php;
 
+    include snippets/imjini-headers.conf;
+
+    error_page 404 /404.php;
+
+    # 정적 파일 7일 캐시 (?v= 번호로 갱신)
     location / {
+        expires 7d;
         try_files $uri $uri/ =404;
     }
 
-    location ~ \.php$ {
+    location = /index.php {
         include snippets/fastcgi-php.conf;
         fastcgi_pass unix:/run/php/php8.3-fpm.sock;
     }
+
+    location = /404.php {
+        internal;
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/run/php/php8.3-fpm.sock;
+    }
+
+    # 그 외 PHP 파일은 실행하지 않음
+    location ~ \.php$ { return 404; }
 
     location ~ /\.(?!well-known) { deny all; }
 }
