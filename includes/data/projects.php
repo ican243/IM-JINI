@@ -4,7 +4,7 @@
 // image: 메인 카드 화면 jpg (같은 이름의 .webp 가 있으면 먼저 사용, 비어 있으면 '비공개' 표시)
 // link: 사이트 주소, github: 저장소 주소 (비어 있으면 버튼 안 보임)
 // intro, note: 상세 페이지 머리의 한 줄 소개와 알림
-// shots: 상세 페이지 화면 목록. 첫 장이 가장 크게 나온다. 파일이 없으면 '준비 중' 칸
+// shots: 상세 페이지 화면 목록. 첫 장이 가장 크게 나온다. 파일이 없는 화면은 숨김
 // 상세 본문은 includes/projects/{slug}.php
 $projects = [
     'livef' => [
@@ -20,7 +20,7 @@ $projects = [
         'note'   => '기존 개발자가 만든 상업 서비스를 넘겨받아 운영과 개선을 맡고 있습니다. 고객사 서비스라 화면은 싣지 않았습니다.',
     ],
     'lambda' => [
-        'title'  => 'Lambda',
+        'title'  => '모아증권',
         'badge'  => '2인 팀',
         'tag'    => '실시간 주식 모의투자',
         'desc'   => '증권사 API로 실시간 시세를 받아 모의투자를 할 수 있는 플랫폼입니다.',
@@ -29,11 +29,11 @@ $projects = [
         'link'   => 'https://kir1.cafe24.com/user/',
         'github' => 'https://github.com/ican243/Lambda',
         'intro'  => '증권사 API로 코스피·코스닥 전 종목의 실시간 시세를 받아, 차트를 보며 모의투자를 할 수 있는 서비스입니다.',
-        'note'   => '시세를 받아오는 서버와 데이터 처리, 화면을 맡았고 자동매매 기능은 팀원이 맡았습니다. 모의투자 서비스라 실제 주문은 나가지 않습니다.',
+        'note'   => '시세를 받아오는 서버와 데이터 처리, 화면을 맡았고 자동매매 기능은 팀원이 맡았습니다. 모의투자 서비스라 실제 주문은 나가지 않으며, 가입 없이 체험 계정으로 바로 써 볼 수 있습니다.',
         'shots'  => [
             ['file' => 'assets/img/projects/lambda-main.jpg',   'caption' => '메인 화면'],
             ['file' => 'assets/img/projects/lambda-detail.jpg', 'caption' => '종목 상세 (차트·호가)'],
-            ['file' => 'assets/img/projects/lambda-trade.jpg',  'caption' => '모의 매매 (계좌·주문)'],
+            ['file' => 'assets/img/projects/lambda-trade.jpg',  'caption' => '내 계좌 (체험 계정)'],
         ],
     ],
     'linkr' => [
