@@ -2,7 +2,7 @@
 $services = [
     [
         'title' => '웹사이트 / 랜딩 페이지',
-        'desc'  => '회사·브랜드 소개, 상담 신청까지 받는 홈페이지',
+        'desc'  => '회사·브랜드 소개부터 상담 신청까지 받는 홈페이지',
     ],
     [
         'title' => '관리자 페이지',
@@ -18,13 +18,16 @@ $services = [
     ],
 ];
 ?>
-<section id="services" class="section section-soft">
+<section id="services" class="section">
     <div class="container">
-        <h2 class="section-title">이런 것을 만듭니다</h2>
+        <div class="section-head reveal">
+            <p class="eyebrow">SERVICES</p>
+            <h2 class="section-title">이런 것을 만듭니다</h2>
+        </div>
 
         <ol class="service-list">
             <?php foreach ($services as $i => $s): ?>
-                <li class="service-item">
+                <li class="service-item reveal">
                     <span class="service-num"><?= sprintf('%02d', $i + 1) ?></span>
                     <h3 class="service-title"><?= e($s['title']) ?></h3>
                     <p class="service-desc"><?= e($s['desc']) ?></p>

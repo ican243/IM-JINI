@@ -30,7 +30,8 @@ $meta_size  = isset($page_image) ? [800, 500] : [1200, 630];   // 프로젝트 �
 
     <link rel="icon" href="<?= url('assets/img/favicon.svg') ?>" type="image/svg+xml">
     <link rel="apple-touch-icon" href="<?= url('assets/img/apple-touch-icon.png') ?>">
-    <script>document.documentElement.classList.add('js');</script>
+    <!-- js: 스크립트 사용 가능 표시 / lamp-on: 이번 방문 첫 화면이면 Hero 램프 등장 효과 (화면을 그리기 전에 정해야 번쩍임이 없음) -->
+    <script>(function(d){d.classList.add('js');try{if(!sessionStorage.getItem('imjini-lamp')&&!matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('lamp-on')}catch(e){}})(document.documentElement);</script>
     <link rel="stylesheet" href="<?= url('assets/css/pretendard.css') ?>?v=<?= e($site['version']) ?>">
     <link rel="stylesheet" href="<?= url('assets/css/style.css') ?>?v=<?= e($site['version']) ?>">
 </head>
@@ -46,10 +47,11 @@ $meta_size  = isset($page_image) ? [800, 500] : [1200, 630];   // 프로젝트 �
             </button>
 
             <nav class="nav" id="site-nav">
-                <a href="<?= url() ?>#story">Story</a>
-                <a href="<?= url() ?>#services">Services</a>
-                <a href="<?= url() ?>#projects">Projects</a>
-                <a href="<?= url() ?>#contact" class="nav-cta">Contact</a>
+                <a href="<?= url() ?>#services">서비스</a>
+                <a href="<?= url() ?>#projects">작업</a>
+                <a href="<?= url() ?>#process">진행 방식</a>
+                <a href="<?= url() ?>#faq">자주 묻는 질문</a>
+                <a href="<?= url() ?>#contact" class="nav-cta">프로젝트 문의</a>
             </nav>
         </div>
     </header>

@@ -5,6 +5,7 @@
 // kir1.cafe24.com/imjini/ 로 접속하면 '/imjini', imjini.com 으로 접속하면 ''
 define('BASE_PATH', rtrim($_SERVER['BASE_PATH'] ?? '', '/'));
 define('INC_PATH', __DIR__);
+define('PUBLIC_PATH', dirname(__DIR__) . '/public');   // 이미지 파일이 있는지 확인할 때 사용
 
 $site = [
     'name'      => 'IM JINI',
@@ -13,7 +14,7 @@ $site = [
     'intro'     => '머릿속 아이디어를 실제로 돌아가는 웹 서비스로 만들어 드립니다.',
     'email'     => 'ican243@gmail.com',
     'github'    => 'https://github.com/ican243',
-    'version'   => 15,   // CSS, JS 를 바꾸면 숫자를 올린다 (브라우저 캐시 갱신)
+    'version'   => 24,   // CSS, JS 를 바꾸면 숫자를 올린다 (브라우저 캐시 갱신)
 ];
 
 // 사이트 안 주소 만들기 (BASE_PATH 를 앞에 붙임)
