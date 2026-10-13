@@ -2,6 +2,7 @@
 // 프로젝트 기본 정보 (메인 카드와 상세 페이지가 함께 사용)
 // 키(slug)가 상세 페이지 주소가 된다: /projects/linkr
 // 적힌 순서대로 메인에 나온다 (화면 사진이 있는 것 먼저)
+// mobile: 휴대폰에서 보여줄 세로 화면 jpg (없으면 PC 화면 사용)
 // image: 메인 카드 화면 jpg (같은 이름의 .webp 가 있으면 먼저 사용, 비어 있으면 '비공개' 표시)
 // link: 사이트 주소, github: 저장소 주소 (비어 있으면 버튼 안 보임)
 // intro, note: 상세 페이지 머리의 한 줄 소개와 알림
@@ -15,6 +16,7 @@ $projects = [
         'desc'   => '증권사 API로 실시간 시세를 받아 모의투자를 할 수 있는 플랫폼입니다. 가입 없이 체험 계정으로 바로 써 볼 수 있습니다.',
         'stack'  => ['PHP', 'Node.js', 'WebSocket', 'MySQL'],
         'image'  => 'assets/img/projects/lambda.jpg',
+        'mobile' => 'assets/img/projects/lambda-mobile.jpg',   // 휴대폰에서 보여줄 화면 (390x780)
         'link'   => 'https://kir1.cafe24.com/user/',
         'github' => 'https://github.com/ican243/Lambda',
         'intro'  => '증권사 API로 코스피·코스닥 전 종목의 실시간 시세를 받아, 차트를 보며 모의투자를 할 수 있는 서비스입니다.',
@@ -32,6 +34,7 @@ $projects = [
         'desc'   => '긴 주소를 짧게 줄이고 클릭 통계를 보여줍니다. 요금제, 결제, 관리자 도구까지 처음부터 혼자 설계했습니다.',
         'stack'  => ['CodeIgniter 4', 'MySQL', 'OAuth', '토스페이먼츠'],
         'image'  => 'assets/img/projects/linkr.jpg',
+        'mobile' => 'assets/img/projects/linkr-mobile.jpg',    // 아직 없음. 파일을 넣으면 휴대폰에서 자동으로 보임
         'link'   => 'https://kir1.cafe24.com:8443/',
         'github' => 'https://github.com/ican243/linkr',
         'intro'  => '긴 주소를 짧게 줄이고, 누가 얼마나 눌렀는지 보여주는 서비스입니다.',

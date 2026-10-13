@@ -5,31 +5,33 @@
    배경은 세 가지만 쓴다: 흰색, 미색(cream), 먹색(dark)
    ========================================================== */
 :root {
-    /* 색 */
-    --color-bg: #ffffff;
-    --color-bg-soft: #f6f4fb;
-    --color-cream: #fbfaf7;
-    --color-dark: #16131e;
-    --color-text: #16131e;
-    --color-muted: #5c5766;
-    --color-line: #ece9f2;
-    --color-line-strong: #e3deee;
-    --color-point: #6c4cf1;          /* 로고 보라, 글자·버튼 포인트 */
-    --color-point-dark: #5a3bd9;
-    --color-point-soft: #eee9ff;     /* 배지 바탕 */
-    --color-point-ink: #4b32c9;      /* 배지 글자 */
+    /* 색: 에디토리얼 (먹색 글자, 미색 바탕, 무채색) + 포인트 한 색 */
+    --ink: #171717;                  /* 메인 텍스트 */
+    --paper: #faf9f6;                /* 배경 */
+    --ink-sub: #666666;              /* 보조 텍스트 */
+    --rule: #e7e5e1;                 /* 테두리 */
+    --accent-on-dark: #ea580c;       /* 먹색 바탕 위 포인트 (대비 5.0:1). --accent 를 바꾸면 같이 맞춘다 */
+    --accent: #c2410c;               /* 포인트 (짙은 앰버). 로고 IM, 밑줄·선·마우스 올림에 사용. 바꿀 땐 이 한 줄만 */
+    --radius-btn: 8px;               /* 버튼 모서리 */
+
+    /* 예전 이름 (여러 곳에서 쓰고 있어서 이름은 두고 값만 새 색으로) */
+    --color-bg: var(--paper);
+    --color-cream: var(--paper);
+    --color-dark: var(--ink);
+    --color-text: var(--ink);
+    --color-muted: var(--ink-sub);
+    --color-line: var(--rule);
+    --color-line-strong: var(--rule);
+    --color-point: var(--ink);       /* 강조·포커스 = 먹색 */
+    --color-point-soft: #efede8;     /* 배지 바탕 */
+    --color-point-ink: #444444;      /* 배지 글자 */
 
     /* 어두운 섹션 위 */
     --color-on-dark: #ffffff;
-    --color-on-dark-muted: #c9c3d6;
-    --color-on-dark-faint: #a8a2b5;
-    --color-on-dark-line: #3a3448;
-    --color-on-dark-point: #b9a9ff;
-
-    /* 램프 */
-    --lamp-glow: 242, 196, 109;      /* 금빛 #f2c46d, rgba(var(--lamp-glow), 투명도) 로 사용 */
-    --lamp-night: #1b1530;           /* 램프 켜기 전 밤 */
-    --lamp-time: 1.4s;               /* 램프 등장 효과 전체 시간 */
+    --color-on-dark-muted: #b3b3b3;
+    --color-on-dark-faint: #8c8c8c;
+    --color-on-dark-line: #333333;
+    --color-on-dark-point: #d4d4d4;
 
     /* 글자 */
     --font-base: 'Pretendard Variable', -apple-system, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
@@ -47,7 +49,7 @@
 
     --max-width: 1200px;
     --header-height: 68px;
-    --radius: 16px;
+    --radius: 12px;
 }
 
 /* ==========================================================
@@ -84,7 +86,7 @@ a {
 a:focus-visible,
 button:focus-visible,
 summary:focus-visible {
-    outline: 2px solid var(--color-point);
+    outline: 2px solid var(--accent);
     outline-offset: 3px;
 }
 
@@ -123,6 +125,10 @@ img {
     background: var(--color-cream);
 }
 
+.section:not(.section-dark) + .section:not(.section-dark) {
+    border-top: 1px solid var(--rule);
+}
+
 .section-dark {
     background: var(--color-dark);
     color: var(--color-on-dark);
@@ -138,7 +144,7 @@ img {
 /* 섹션 위 작은 영문 라벨 */
 .eyebrow {
     margin: 0;
-    color: var(--color-point);
+    color: var(--ink-sub);
     font-size: 0.875rem;
     font-weight: 700;
     letter-spacing: 0.2em;
@@ -192,7 +198,7 @@ img {
     min-height: 44px;   /* 손가락으로 누르기 편한 크기 */
     padding: 15px 30px;
     border: 1px solid transparent;
-    border-radius: 999px;
+    border-radius: var(--radius-btn);
     background: transparent;   /* button 태그 기본 회색 배경 제거 */
     font-family: inherit;
     font-size: 1.0625rem;
@@ -214,21 +220,31 @@ img {
 }
 
 .btn-primary:hover {
-    background: var(--color-point-dark);
+    background: #000;
+}
+
+/* 어두운 섹션 위의 메인 버튼은 흰색 */
+.section-dark .btn-primary {
+    background: #fff;
+    color: var(--ink);
+}
+
+.section-dark .btn-primary:hover {
+    background: var(--rule);
 }
 
 .btn-outline {
-    border-color: currentColor;
+    border-color: var(--rule);
+    color: var(--ink);
 }
 
 .btn-outline:hover {
-    border-color: var(--color-point);
-    color: var(--color-point);
+    border-color: var(--ink);
 }
 
 .badge {
-    padding: 5px 12px;
-    border-radius: 999px;
+    padding: 5px 10px;
+    border-radius: 6px;
     background: var(--color-point-soft);
     color: var(--color-point-ink);
     font-size: 0.8125rem;
@@ -255,59 +271,32 @@ img {
 }
 
 /* ==========================================================
-   Hero
+   Hero (에디토리얼 색: 먹색 글자, 미색 바탕, 버튼 검정)
    ========================================================== */
 .hero {
-    position: relative;
-    overflow: hidden;
-    background: var(--color-cream);
+    background: var(--paper);
+    color: var(--ink);
     scroll-margin-top: var(--header-height);
 }
 
-/* 배경: 램프 빛과 JINI 글자를 같은 칸에 겹쳐서, 빛이 항상 글자 한가운데 오게 */
-.hero-bg {
-    position: absolute;
-    top: 50%;
-    right: 1%;
-    display: grid;
-    place-items: center;
-    font-size: clamp(10rem, 22vw, 20rem);   /* JINI 글자 크기 (빛 크기도 이 값을 따라감) */
-    transform: translateY(-50%);
-    pointer-events: none;
-    user-select: none;
-}
-
-.hero-glow,
-.hero-word {
-    grid-area: 1 / 1;
-}
-
-.hero-word {
-    color: rgba(108, 76, 241, 0.07);
-    font-weight: 900;
-    line-height: 1;
-    letter-spacing: -0.07em;
-    white-space: nowrap;
-}
-
-.hero-glow {
-    position: relative;
-    width: 2.1em;
-    height: 2.1em;
-    border-radius: 50%;
-    background: radial-gradient(closest-side,
-        rgba(var(--lamp-glow), 0.4),
-        rgba(var(--lamp-glow), 0.12) 55%,
-        rgba(var(--lamp-glow), 0) 100%);
-}
-
+/* 왼쪽 글 + 오른쪽 작업 목차 */
 .hero-inner {
-    position: relative;   /* 배경 위로 */
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 340px);
+    align-items: center;
+    gap: 64px;
+    padding-top: clamp(96px, 10vw, 136px);
+    padding-bottom: clamp(88px, 9vw, 128px);
+}
+
+.hero-text {
     display: flex;
     flex-direction: column;
     gap: 26px;
-    padding-top: clamp(96px, 10vw, 136px);
-    padding-bottom: clamp(88px, 9vw, 128px);
+}
+
+.hero .eyebrow {
+    color: var(--ink-sub);
 }
 
 .hero-title {
@@ -319,125 +308,101 @@ img {
     letter-spacing: -0.045em;
 }
 
-.hero-title em,
-.message-title em {
-    color: var(--color-point);
+.hero-title em {
     font-style: normal;
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: var(--accent);   /* 밑줄만 포인트 (shorthand 뒤에 써야 적용됨) */
+    text-decoration-thickness: 0.06em;
+    text-underline-offset: 0.14em;
+}
+
+/* 화면 폭에 따라 줄바꿈 위치를 바꾼다 (글자는 그대로) */
+.br-sm {
+    display: none;
 }
 
 .hero-lead {
     max-width: 28em;
     margin: 0;
-    color: var(--color-muted);
+    color: var(--ink-sub);
     font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
 }
 
-.hero .btn-group {
+.hero-text .btn-group {
     margin-top: 10px;
 }
 
-/* ==========================================================
-   Hero 램프 등장 효과 (이번 방문 첫 화면에서 한 번만)
-   html.lamp-on 은 header.php 의 스크립트가 붙이고, main.js 가 끝나면 뗀다.
-   어두움(0~15%) → 램프 빛(15~50%) → 밝아짐(50~100%)
-   모든 단계에서 글자는 보이게 하고, 끝 상태는 원래 Hero 와 같다.
-   ========================================================== */
-.lamp-on .hero {
-    animation: lamp-bg var(--lamp-time) ease-in-out both;
+/* 오른쪽 작업 목차: 얇은 선으로 나눈 목록, 누르면 상세 페이지 */
+.hero-index-label {
+    margin: 0 0 12px;
+    color: var(--ink-sub);
+    font-size: 0.875rem;
+    font-weight: 600;
 }
 
-/* 밤에서 미색으로 바로 가면 중간이 회색처럼 탁해져서, 보라 단계를 거친다 */
-@keyframes lamp-bg {
-    0%, 15% { background-color: var(--lamp-night); }
-    50%     { background-color: #2f2463; }
-    62%     { background-color: #efeaf9; }   /* 중간 밝기는 짧게 지나가서 탁해 보이지 않게 */
-    100%    { background-color: var(--color-cream); }
+.hero-index ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--ink);
 }
 
-/* 어두운 동안은 밝은 글자, 배경이 밝아지는 순간 원래 글자색으로 */
-.lamp-on .hero-title,
-.lamp-on .hero .btn-outline {
-    animation: lamp-text var(--lamp-time) ease-in-out both;
+.hero-index a {
+    display: grid;
+    grid-template-columns: 32px minmax(0, 1fr) auto;
+    align-items: baseline;
+    gap: 12px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--rule);
+    color: var(--ink);
+    text-decoration: none;
 }
 
-@keyframes lamp-text {
-    0%, 50% { color: #ede8ff; }
-    60%, 100% { color: var(--color-text); }
+.hero-index-num {
+    color: var(--ink-sub);
+    font-size: 0.875rem;
+    font-variant-numeric: tabular-nums;
 }
 
-.lamp-on .hero-lead {
-    animation: lamp-muted var(--lamp-time) ease-in-out both;
+.hero-index-body strong {
+    display: block;
+    font-size: 1.125rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
 }
 
-@keyframes lamp-muted {
-    0%, 50% { color: #bdb6d6; }
-    60%, 100% { color: var(--color-muted); }
+.hero-index-body span {
+    display: block;
+    margin-top: 2px;
+    color: var(--ink-sub);
+    font-size: 0.9375rem;
 }
 
-/* 보라 글자는 어두운 배경에서 잘 안 보여서 처음엔 밝은 보라로 */
-.lamp-on .hero .eyebrow,
-.lamp-on .hero-title em {
-    animation: lamp-point var(--lamp-time) ease-in-out both;
+.hero-index-arrow {
+    color: var(--ink-sub);
+    transition: transform 0.2s var(--ease), color 0.2s var(--ease);
 }
 
-@keyframes lamp-point {
-    0%, 50% { color: #c3b4ff; }
-    60%, 100% { color: var(--color-point); }
+/* 터치: 누르는 순간 (휴대폰에는 마우스 올림이 없어서) */
+.hero-index a:active .hero-index-num,
+.hero-index a:active .hero-index-arrow {
+    color: var(--accent);
 }
 
-.lamp-on .hero-word {
-    animation: lamp-word var(--lamp-time) ease-in-out both;
+.hero-index a {
+    -webkit-tap-highlight-color: transparent;   /* 회색 터치 상자 대신 위의 색 변화로 */
 }
 
-@keyframes lamp-word {
-    0%, 15% { color: rgba(237, 232, 255, 0.1); }
-    45%     { color: rgba(255, 226, 160, 0.2); }   /* 빛을 받아 글자가 살짝 밝아짐 */
-    100%    { color: rgba(108, 76, 241, 0.07); }
-}
-
-/* 램프 빛: 꺼져 있다가 켜지면서 크게 퍼진 뒤 원래 크기로 */
-.lamp-on .hero-glow {
-    animation: lamp-glow-on var(--lamp-time) var(--ease) both;
-}
-
-@keyframes lamp-glow-on {
-    0%, 15% {
-        opacity: 0;
-        transform: scale(0.4);
+@media (hover: hover) {
+    .hero-index a:hover .hero-index-num,
+    .hero-index a:hover .hero-index-arrow {
+        color: var(--accent);
     }
 
-    45% {
-        opacity: 1;
-        transform: scale(1.1);
+    .hero-index a:hover .hero-index-arrow {
+        transform: translateX(4px);
     }
-
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-/* 켜지는 순간의 밝은 불씨 (어두운 배경에서 '켜졌다'가 확실히 보이게), 밝아지면서 사라짐 */
-.hero-glow::after {
-    content: '';
-    position: absolute;
-    inset: 18%;
-    border-radius: 50%;
-    background: radial-gradient(closest-side,
-        rgba(255, 236, 190, 0.9),
-        rgba(var(--lamp-glow), 0.4) 50%,
-        rgba(var(--lamp-glow), 0) 100%);
-    opacity: 0;
-}
-
-.lamp-on .hero-glow::after {
-    animation: lamp-core var(--lamp-time) ease-out both;
-}
-
-@keyframes lamp-core {
-    0%, 15% { opacity: 0; }
-    40%     { opacity: 1; }
-    100%    { opacity: 0; }
 }
 
 /* ==========================================================
@@ -460,7 +425,7 @@ img {
 }
 
 .service-num {
-    color: var(--color-point);
+    color: var(--ink-sub);
     font-size: 1rem;
     font-weight: 700;
 }
@@ -511,7 +476,6 @@ img {
     border: 1px solid var(--color-line-strong);
     border-radius: var(--radius);
     background: var(--color-bg);
-    box-shadow: 0 30px 60px -30px rgba(43, 30, 110, 0.25);
 }
 
 .work-shot picture {
@@ -535,7 +499,7 @@ img {
 
 .work-meta {
     margin: 0;
-    color: var(--color-point);
+    color: var(--ink-sub);
     font-size: 0.9375rem;
     font-weight: 700;
 }
@@ -598,11 +562,11 @@ img {
 
     .work:hover .more-link,
     .work-strip:hover .more-link {
-        color: var(--color-point);
+        border-bottom-color: var(--accent);
     }
 
     .work-strip:hover {
-        border-color: rgba(108, 76, 241, 0.4);
+        border-color: var(--accent);
     }
 }
 
@@ -628,7 +592,7 @@ img {
 }
 
 .promise-num {
-    color: var(--color-on-dark-point);
+    color: var(--color-on-dark-muted);
     font-size: 0.9375rem;
     font-weight: 700;
 }
@@ -688,31 +652,6 @@ img {
 }
 
 /* ==========================================================
-   메시지 띠
-   ========================================================== */
-.message {
-    padding: clamp(104px, 11vw, 144px) 0;
-    border-top: 1px solid var(--color-line);
-    border-bottom: 1px solid var(--color-line);
-    text-align: center;
-}
-
-.message-title {
-    max-width: 15em;
-    margin: 0 auto;
-    font-size: clamp(1.75rem, 1rem + 3vw, 3.375rem);
-    font-weight: 900;
-    line-height: 1.35;
-    letter-spacing: -0.045em;
-}
-
-.message-lead {
-    margin: 22px 0 0;
-    color: var(--color-muted);
-    font-size: 1.125rem;
-}
-
-/* ==========================================================
    자주 묻는 질문 (누르면 펼쳐짐)
    ========================================================== */
 .faq-list {
@@ -760,18 +699,13 @@ img {
 }
 
 /* ==========================================================
-   Contact (어두운 섹션)
+   Contact (어두운 섹션): 왼쪽 문구, 오른쪽 안내·버튼·이메일
    ========================================================== */
 .contact-inner {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 40px;
-}
-
-.contact-text {
-    flex: 1 1 520px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 420px);
+    align-items: start;
+    gap: 56px;
 }
 
 .contact-title {
@@ -783,25 +717,65 @@ img {
 }
 
 .contact-lead {
-    margin: 18px 0 0;
+    margin: 20px 0 0;
     color: var(--color-on-dark-muted);
     font-size: 1.125rem;
+    line-height: 1.75;
 }
 
-.contact-actions {
+.contact-tips-title {
+    margin: 0 0 12px;
+    color: var(--color-on-dark-muted);
+    font-size: 0.9375rem;
+    font-weight: 600;
+}
+
+/* 알려주시면 좋은 것: 번호 + 얇은 선 */
+.contact-tips {
+    margin: 0 0 28px;
+    padding: 0;
+    list-style: none;
+    counter-reset: tip;
+    border-top: 1px solid var(--color-on-dark-line);
+}
+
+.contact-tips li {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
     gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--color-on-dark-line);
+    font-weight: 600;
+    counter-increment: tip;
+}
+
+.contact-tips li::before {
+    content: counter(tip);
+    width: 1em;
+    color: var(--color-on-dark-muted);
+    font-weight: 400;
+    font-variant-numeric: tabular-nums;
+}
+
+.section-dark .btn-outline {
+    border-color: rgba(255, 255, 255, 0.3);
+    color: var(--color-on-dark);
+}
+
+.section-dark .btn-outline:hover {
+    border-color: var(--color-on-dark);
 }
 
 .contact-email {
-    color: var(--color-on-dark);
-    text-underline-offset: 4px;
+    margin: 18px 0 0;
+    color: var(--color-on-dark-muted);
+    font-size: 0.9375rem;
+    user-select: all;   /* 한 번 누르면 주소 전체 선택 */
 }
 
-.contact-email:hover {
-    color: var(--color-on-dark-point);
+.contact-reply {
+    margin: 6px 0 0;
+    color: var(--color-on-dark-muted);
+    font-size: 0.9375rem;
 }
 
 /* ==========================================================
@@ -973,7 +947,7 @@ img {
     position: absolute;
     top: 18px;
     left: 0;
-    color: var(--color-point);
+    color: var(--ink-sub);
     font-size: 1.375rem;
     font-weight: 800;
 }
@@ -990,6 +964,7 @@ img {
 
 .detail-next {
     padding-top: 0;
+    border-top: 0;   /* 메인의 섹션 구분선은 상세 페이지에는 쓰지 않음 */
 }
 
 .detail-next-label {
@@ -1026,7 +1001,10 @@ img {
 }
 
 .detail-next-list a:hover strong {
-    color: var(--color-point);
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 5px;
 }
 
 /* ==========================================================
@@ -1072,7 +1050,7 @@ img {
 }
 
 .logo-im {
-    color: var(--color-point);
+    color: var(--accent);   /* 로고 IM 만 포인트 색 */
 }
 
 /* ==========================================================
@@ -1082,8 +1060,9 @@ img {
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(255, 255, 255, 0.96);
-    border-bottom: 1px solid var(--color-line);
+    background: rgba(250, 249, 246, 0.96);   /* --paper, 아래 Hero 와 이어지게 */
+    border-bottom: 1px solid var(--rule);
+    color: var(--ink);
     transition: transform 0.3s var(--ease);
 }
 
@@ -1107,14 +1086,18 @@ img {
 }
 
 .nav a {
-    color: #4d4858;
+    color: var(--ink-sub);
     font-weight: 500;
     text-decoration: none;
     transition: color 0.2s var(--ease);
 }
 
-.nav a:hover {
-    color: var(--color-point);
+.nav a:not(.nav-cta):hover {
+    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 6px;
 }
 
 .nav .nav-cta {
@@ -1122,8 +1105,8 @@ img {
     align-items: center;
     min-height: 44px;
     padding: 0 20px;
-    border-radius: 999px;
-    background: var(--color-dark);
+    border-radius: var(--radius-btn);
+    background: var(--ink);
     color: #fff;
     font-weight: 700;
     transition: background 0.2s var(--ease), transform 0.16s var(--ease);
@@ -1134,7 +1117,7 @@ img {
 }
 
 .nav .nav-cta:hover {
-    background: var(--color-point);
+    background: #000;
     color: #fff;
 }
 
@@ -1156,7 +1139,7 @@ img {
 .nav-toggle span {
     width: 22px;
     height: 2px;
-    background: var(--color-text);
+    background: var(--ink);
     transition: transform 0.2s var(--ease), opacity 0.2s var(--ease);
 }
 
@@ -1199,7 +1182,7 @@ img {
 }
 
 .site-footer .logo-im {
-    color: var(--color-on-dark-point);
+    color: var(--accent-on-dark);   /* 먹색 바탕에서 글자 대비 기준(4.5:1)을 넘게 */
 }
 
 .footer-slogan {
@@ -1224,7 +1207,9 @@ img {
 }
 
 .footer-links a:hover {
-    color: var(--color-on-dark-point);
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-underline-offset: 4px;
 }
 
 .copyright {
@@ -1233,6 +1218,17 @@ img {
 
 /* 태블릿 */
 @media (max-width: 960px) {
+    /* Hero: 문구와 버튼 먼저, 작업 목차는 아래 */
+    .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 56px;
+    }
+
+    .contact-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
     .work,
     .work-flip {
         gap: 40px;
@@ -1281,18 +1277,34 @@ img {
         padding: 28px 24px;
     }
 
+    /* 진행 5단계: 휴대폰은 한 줄 목록 (번호 | 제목·설명), 5번만 혼자 남지 않게 */
     .process-list {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: 1fr;
     }
 
-    /* 휴대폰: JINI 를 오른쪽 아래로 */
-    .hero-bg {
-        top: auto;
-        right: -8vw;
-        bottom: -0.1em;
-        font-size: 40vw;
-        transform: none;
+    .process-item {
+        display: grid;
+        grid-template-columns: 44px minmax(0, 1fr);
+        gap: 2px 12px;
+        padding: 18px 0;
+        border-bottom: 1px solid var(--rule);
     }
+
+    .process-num {
+        grid-row: span 2;
+        font-size: 1.75rem;
+    }
+
+    /* Hero 제목: 휴대폰은 '떠오른 생각을 / 현실로 만듭니다.' 로 짧게 나눠서
+       글꼴이 늦게 적용돼도 줄 수가 바뀌지 않게 (아래 목록이 밀리지 않음) */
+    .br-sm {
+        display: inline;
+    }
+
+    .br-lg {
+        display: none;
+    }
+
 
     .faq-item summary {
         font-size: 1.0625rem;
@@ -1322,8 +1334,8 @@ img {
         align-items: stretch;
         gap: 0;
         padding: 8px 24px 20px;
-        background: var(--color-bg);
-        border-bottom: 1px solid var(--color-line);
+        background: var(--paper);
+        border-bottom: 1px solid var(--rule);
         font-size: 1rem;
     }
 
@@ -1333,7 +1345,7 @@ img {
 
     .nav a {
         padding: 14px 0;
-        border-bottom: 1px solid var(--color-line);
+        border-bottom: 1px solid var(--rule);
     }
 
     .nav .nav-cta {
@@ -1356,6 +1368,32 @@ img {
     }
 }
 
+/* 휴대폰: 작업 화면에 휴대폰용 세로 캡처가 있으면 위쪽을 크게 (글자가 읽히게).
+   picture.php 의 480px 기준과 같아야 한다 */
+@media (max-width: 480px) {
+    .work-shot.has-mobile {
+        aspect-ratio: 4 / 5;
+    }
+}
+
+/* 좁은 휴대폰: Hero 버튼은 한 줄에 하나씩 꽉 차게 (글꼴이 늦게 와도 줄 수가 같고, 누르기 쉬움) */
+@media (max-width: 480px) {
+    .hero-text .btn-group {
+        flex-direction: column;
+    }
+
+    .hero-text .btn {
+        justify-content: center;
+    }
+}
+
+/* 아주 좁은 휴대폰: 소개 문장 세 줄 자리를 미리 잡아서 아래가 밀리지 않게 */
+@media (max-width: 380px) {
+    .hero-lead {
+        min-height: calc(3em * 1.7);
+    }
+}
+
 /* 움직임 줄이기 설정을 켠 사용자 */
 @media (prefers-reduced-motion: reduce) {
     html {
@@ -1370,11 +1408,5 @@ img {
 
     .site-header {
         transition: none;
-    }
-
-    .lamp-on .hero,
-    .lamp-on .hero *,
-    .lamp-on .hero-glow::after {
-        animation: none;
     }
 }

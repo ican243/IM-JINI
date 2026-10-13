@@ -8,7 +8,6 @@ require INC_PATH . '/sections/services.php';
 require INC_PATH . '/sections/projects.php';
 require INC_PATH . '/sections/promise.php';
 require INC_PATH . '/sections/process.php';
-require INC_PATH . '/sections/message.php';
 require INC_PATH . '/sections/faq.php';
 require INC_PATH . '/sections/contact.php';
 

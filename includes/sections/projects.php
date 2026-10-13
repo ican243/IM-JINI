@@ -28,8 +28,9 @@ require_once INC_PATH . '/picture.php';
                     <?php [$w, $h] = getimagesize(PUBLIC_PATH . '/' . $shot); ?>
                     <!-- 화면이 있는 프로젝트: 화면과 설명을 나란히, 줄마다 좌우를 번갈아 -->
                     <a href="<?= url('projects/' . $slug) ?>" class="work reveal<?= $row++ % 2 ? ' work-flip' : '' ?>">
-                        <div class="work-shot">
-                            <?php picture($shot, $p['title'] . ' 실제 화면', $w, $h); ?>
+                        <?php $mobile = !empty($p['mobile']) && is_file(PUBLIC_PATH . '/' . $p['mobile']) ? $p['mobile'] : null; ?>
+                        <div class="work-shot<?= $mobile ? ' has-mobile' : '' ?>">
+                            <?php picture($shot, $p['title'] . ' 실제 화면', $w, $h, true, $mobile); ?>
                         </div>
                         <div class="work-body">
                             <p class="work-meta"><?= e($meta) ?></p>

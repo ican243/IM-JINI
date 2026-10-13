@@ -1,10 +1,19 @@
 <?php
 // jpg 이미지를 <picture> 로 출력 (같은 이름의 .webp 가 있으면 먼저 사용)
-function picture(string $file, string $alt, int $width, int $height, bool $lazy = true): void
+// $mobile: 휴대폰(480px 이하)에서 대신 보여줄 jpg (파일이 있을 때만 사용)
+function picture(string $file, string $alt, int $width, int $height, bool $lazy = true, ?string $mobile = null): void
 {
     $webp = preg_replace('/\.jpg$/', '.webp', $file);
+    $has_mobile = $mobile && is_file(__DIR__ . '/../public/' . $mobile);
+    $mobile_webp = $has_mobile ? preg_replace('/\.jpg$/', '.webp', $mobile) : null;
     ?>
     <picture>
+        <?php if ($has_mobile): ?>
+            <?php if ($mobile_webp !== $mobile && is_file(__DIR__ . '/../public/' . $mobile_webp)): ?>
+                <source media="(max-width: 480px)" srcset="<?= img_url($mobile_webp) ?>" type="image/webp">
+            <?php endif; ?>
+            <source media="(max-width: 480px)" srcset="<?= img_url($mobile) ?>">
+        <?php endif; ?>
         <?php if ($webp !== $file && is_file(__DIR__ . '/../public/' . $webp)): ?>
             <source srcset="<?= img_url($webp) ?>" type="image/webp">
         <?php endif; ?>

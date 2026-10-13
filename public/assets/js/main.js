@@ -12,6 +12,9 @@ toggle.addEventListener('click', () => {
     setMenu(!nav.classList.contains('is-open'));
 });
 
+// 아이폰 사파리는 이게 있어야 누르는 순간(:active) 스타일이 보인다
+document.addEventListener('touchstart', () => {}, { passive: true });
+
 // 메뉴 항목을 누르면 닫는다
 nav.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => setMenu(false));
@@ -88,34 +91,45 @@ if (!('IntersectionObserver' in window) || reduceMotion) {
     });
 }
 
-// Hero 램프 등장 효과 마무리
-// html.lamp-on 은 header.php 에서 붙는다. 효과가 끝나거나, 방문자가 클릭·스크롤·키 입력을 하면
-// 클래스를 떼서 바로 완료 상태(원래 Hero)로 만든다. 이번 방문에서는 다시 보이지 않게 기록한다.
-const root = document.documentElement;
-const hero = document.querySelector('.hero');
+// 이메일 주소 복사
+// 새 방식(clipboard API)을 먼저 쓰고, 막혀 있으면(권한, http 등) 예전 방식(textarea)으로 다시 시도한다
+function copyByTextarea(text) {
+    const area = document.createElement('textarea');
+    area.value = text;
+    area.setAttribute('readonly', '');
+    area.style.position = 'fixed';
+    area.style.opacity = '0';
+    document.body.appendChild(area);
+    area.select();
+    const ok = document.execCommand('copy');
+    document.body.removeChild(area);
 
-if (root.classList.contains('lamp-on')) {
-    if (hero) {
-        try {
-            sessionStorage.setItem('imjini-lamp', '1');
-        } catch (e) {
-            // 저장이 막힌 환경(시크릿 창 등)에서는 기록 없이 넘어간다
-        }
-
-        const events = ['pointerdown', 'wheel', 'touchstart', 'keydown', 'scroll'];
-        const finish = () => {
-            root.classList.remove('lamp-on');
-            events.forEach((type) => window.removeEventListener(type, finish));
-        };
-
-        events.forEach((type) => window.addEventListener(type, finish, { passive: true }));
-        hero.addEventListener('animationend', (event) => {
-            if (event.target === hero) {
-                finish();
-            }
-        });
-    } else {
-        // Hero 가 없는 페이지(상세, 404)에서는 효과 없음, 기록도 하지 않아 메인에 처음 올 때 보인다
-        root.classList.remove('lamp-on');
-    }
+    return ok ? Promise.resolve() : Promise.reject();
 }
+
+function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+        return navigator.clipboard.writeText(text).catch(() => copyByTextarea(text));
+    }
+
+    return copyByTextarea(text);
+}
+
+document.querySelectorAll('[data-copy]').forEach((btn) => {
+    const label = btn.textContent;
+
+    btn.addEventListener('click', () => {
+        copyText(btn.dataset.copy)
+            .then(() => {
+                btn.textContent = '복사되었습니다';
+            })
+            .catch(() => {
+                btn.textContent = '복사하지 못했습니다';
+            })
+            .finally(() => {
+                setTimeout(() => {
+                    btn.textContent = label;
+                }, 2000);
+            });
+    });
+});

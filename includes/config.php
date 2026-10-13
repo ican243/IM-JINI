@@ -9,12 +9,15 @@ define('PUBLIC_PATH', dirname(__DIR__) . '/public');   // 이미지 파일이 �
 
 $site = [
     'name'      => 'IM JINI',
+    'title'     => 'IM JINI | 홈페이지·관리자 페이지 제작, 1인 웹 개발',   // 메인 페이지 제목 (검색·공유에 보임)
+    'description' => '홈페이지·관리자 페이지 제작부터 기존 사이트 수리까지, 1인 웹 개발 IM JINI입니다. 시작은 당신이, 만드는 건 지니가.',
     'slogan'    => '시작은 당신이, 만드는 건 지니가.',
     'slogan_en' => 'Just start. I’m with you.',
     'intro'     => '머릿속 아이디어를 실제로 돌아가는 웹 서비스로 만들어 드립니다.',
     'email'     => 'ican243@gmail.com',
     'github'    => 'https://github.com/ican243',
-    'version'   => 24,   // CSS, JS 를 바꾸면 숫자를 올린다 (브라우저 캐시 갱신)
+    'reply_time' => '',   // 문의 응답 시간 안내 한 줄 (예: 평일 기준 24시간 안에 답장드립니다). 비워 두면 안 보임
+    'version'   => 39,   // CSS, JS 를 바꾸면 숫자를 올린다 (브라우저 캐시 갱신)
 ];
 
 // 사이트 안 주소 만들기 (BASE_PATH 를 앞에 붙임)
