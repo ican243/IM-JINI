@@ -1,9 +1,51 @@
 # imjini.com 랜딩 페이지 (순수 PHP)
+# 대표 주소: https://www.imjini.com
+#   http://imjini.com, http://www.imjini.com, https://imjini.com → 301 → https://www.imjini.com
 # server_name을 명시해야 king-custom-domains(80 default_server)로 빠지지 않는다.
+# 443 기본값은 lambda(kir1.cafe24.com)에 default_server 로 고정되어 있다. 여기에 default_server 를 쓰지 않는다.
+
+# http: 인증서 확인 경로만 열고, 나머지는 https://www 로
 server {
     listen 80;
     listen [::]:80;
     server_name imjini.com www.imjini.com;
+
+    # 인증서 발급·갱신 확인용 (certbot webroot). 이 경로는 이동시키지 않는다
+    location ^~ /.well-known/acme-challenge/ {
+        root /var/www/letsencrypt;
+        default_type text/plain;
+    }
+
+    location / {
+        return 301 https://www.imjini.com$request_uri;
+    }
+}
+
+# https://imjini.com → https://www.imjini.com
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;   # ipv6only 옵션은 lambda 에서 이미 지정해서 여기서는 쓰지 않음 (중복 시 오류)
+    server_name imjini.com;
+
+    ssl_certificate /etc/letsencrypt/live/www.imjini.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/www.imjini.com/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+
+    return 301 https://www.imjini.com$request_uri;
+}
+
+# https://www.imjini.com: 실제 사이트
+# server_name 을 www 하나만 두어야 사이트가 만드는 주소(og:url 등)가 www 로 나온다
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    server_name www.imjini.com;
+
+    ssl_certificate /etc/letsencrypt/live/www.imjini.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/www.imjini.com/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
 
     root /var/www/imjini/public;
     index index.php;
