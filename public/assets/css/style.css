@@ -13,6 +13,8 @@
     --accent-on-dark: #ea580c;       /* 먹색 바탕 위 포인트 (대비 5.0:1). --accent 를 바꾸면 같이 맞춘다 */
     --accent: #c2410c;               /* 포인트 (짙은 앰버). 로고 IM, 밑줄·선·마우스 올림에 사용. 바꿀 땐 이 한 줄만 */
     --radius-btn: 8px;               /* 버튼 모서리 */
+    --kakao: #fee500;                /* 카카오톡 버튼 노란색 (고객이 바로 알아보게) */
+    --kakao-ink: #191919;
 
     /* 예전 이름 (여러 곳에서 쓰고 있어서 이름은 두고 값만 새 색으로) */
     --color-bg: var(--paper);
@@ -1040,6 +1042,87 @@ img {
 }
 
 /* ==========================================================
+   카카오톡 문의 버튼
+   ========================================================== */
+.chat-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    fill: currentColor;
+}
+
+/* 문의 섹션 안의 버튼 */
+.btn-kakao {
+    gap: 8px;
+    background: var(--kakao);
+    color: var(--kakao-ink);
+}
+
+.btn-kakao:hover {
+    background: #f5dc00;
+}
+
+/* 오른쪽 아래에 떠 있는 안내 칩: 흰 캡슐 + 노란 동그라미 아이콘, 스크롤해도 같은 자리
+   (다른 버튼과 구별되게 캡슐 모양. 아이폰 아래 홈 막대 피함) */
+.kakao-float {
+    position: fixed;
+    right: max(24px, env(safe-area-inset-right));
+    bottom: calc(32px + env(safe-area-inset-bottom));
+    z-index: 90;   /* 헤더(100)·휴대폰 메뉴보다 아래 */
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 52px;
+    padding: 8px 20px 8px 8px;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    border-radius: 999px;
+    background: #fff;
+    color: #333;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);   /* 은은하게 퍼지는 그림자 */
+    transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+
+.kakao-float-icon {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--kakao);
+    color: var(--kakao-ink);
+}
+
+.kakao-float-icon .chat-icon {
+    width: 18px;
+    height: 18px;
+}
+
+.kakao-float:active {
+    transform: scale(0.97);
+}
+
+@media (hover: hover) {
+    .kakao-float:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.16);
+    }
+}
+
+/* 휴대폰: 구석에 조금 더 붙이고 조금 작게 */
+@media (max-width: 768px) {
+    .kakao-float {
+        right: max(16px, env(safe-area-inset-right));
+        bottom: calc(16px + env(safe-area-inset-bottom));
+        min-height: 48px;
+        padding: 6px 16px 6px 6px;
+        font-size: 0.875rem;
+    }
+}
+
+/* ==========================================================
    로고
    ========================================================== */
 .logo {
@@ -1160,7 +1243,7 @@ img {
    푸터 (문의 섹션과 이어지는 먹색)
    ========================================================== */
 .site-footer {
-    padding: 40px 0;
+    padding: 40px 0 calc(40px + 72px);   /* 아래 72px: 떠 있는 카톡 버튼이 바닥글 글자를 가리지 않게 */
     background: var(--color-dark);
     border-top: 1px solid var(--color-on-dark-line);   /* 메인에서는 위 문의 섹션과 같은 색이라 선으로 나눈다 */
     color: var(--color-on-dark-faint);

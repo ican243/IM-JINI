@@ -24,6 +24,9 @@ $tips = ['만들고 싶은 것', '참고 사이트', '희망 일정', '예산 �
                 </ol>
 
                 <div class="btn-group contact-actions">
+                    <?php if (!empty($site['kakao_open'])): ?>
+                        <a href="<?= e($site['kakao_open']) ?>" class="btn btn-kakao" target="_blank" rel="noopener" aria-label="카카오톡 오픈채팅으로 문의하기 (새 창)"><?= chat_icon() ?>카카오톡으로 문의</a>
+                    <?php endif; ?>
                     <a href="<?= e($mailto) ?>" class="btn btn-primary">메일 보내기</a>
                     <button type="button" class="btn btn-outline" data-copy="<?= e($site['email']) ?>">이메일 주소 복사</button>
                 </div>
