@@ -42,6 +42,7 @@ $meta_alt   = isset($page_image) ? $page_title . ' 화면' : $site['name'] . ' �
     <meta property="og:image:alt" content="<?= e($meta_alt) ?>">
     <meta name="twitter:card" content="summary_large_image">
 
+    <link rel="icon" href="<?= url('favicon.ico') ?>" sizes="48x48">   <!-- 오래된 형식 (검색 결과 아이콘 등) -->
     <link rel="icon" href="<?= url('assets/img/favicon.svg') ?>" type="image/svg+xml">
     <link rel="apple-touch-icon" href="<?= url('assets/img/apple-touch-icon.png') ?>">
     <script>document.documentElement.classList.add('js');</script>
