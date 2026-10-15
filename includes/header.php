@@ -18,6 +18,15 @@ $meta_alt   = isset($page_image) ? $page_title . ' 화면' : $site['name'] . ' �
     <meta name="robots" content="noindex">
 <?php endif; ?>
     <meta name="description" content="<?= e($meta_desc) ?>">
+<?php if (empty($noindex)): ?>
+    <link rel="canonical" href="<?= e($meta_url) ?>">
+<?php endif; ?>
+<?php if (!empty($site['naver_verify'])): ?>
+    <meta name="naver-site-verification" content="<?= e($site['naver_verify']) ?>">
+<?php endif; ?>
+<?php if (!empty($site['google_verify'])): ?>
+    <meta name="google-site-verification" content="<?= e($site['google_verify']) ?>">
+<?php endif; ?>
     <meta name="theme-color" content="#faf9f6">
 
     <!-- 공유 미리보기 (카카오톡, SNS) -->

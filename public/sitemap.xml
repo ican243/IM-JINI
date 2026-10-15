@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 검색엔진에 알려줄 주소 목록. 프로젝트를 추가하면 여기에도 추가한다 -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>https://www.imjini.com/</loc>
+        <lastmod>2026-10-13</lastmod>
+    </url>
+    <url>
+        <loc>https://www.imjini.com/projects/lambda</loc>
+        <lastmod>2026-10-13</lastmod>
+    </url>
+    <url>
+        <loc>https://www.imjini.com/projects/linkr</loc>
+        <lastmod>2026-10-13</lastmod>
+    </url>
+    <url>
+        <loc>https://www.imjini.com/projects/livef</loc>
+        <lastmod>2026-10-13</lastmod>
+    </url>
+</urlset>
