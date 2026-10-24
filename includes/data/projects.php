@@ -9,22 +9,22 @@
 // shots: 상세 페이지 화면 목록. 첫 장이 가장 크게 나온다. 파일이 없는 화면은 숨김
 // 상세 본문은 includes/projects/{slug}.php
 $projects = [
-    'lambda' => [
-        'title'  => '모아증권',
-        'badge'  => '2인 팀',
-        'tag'    => '실시간 주식 모의투자',
-        'desc'   => '증권사 API로 실시간 시세를 받아 모의투자를 할 수 있는 플랫폼입니다. 가입 없이 체험 계정으로 바로 써 볼 수 있습니다.',
-        'stack'  => ['PHP', 'Node.js', 'WebSocket', 'MySQL'],
-        'image'  => 'assets/img/projects/lambda.jpg',
-        'mobile' => 'assets/img/projects/lambda-mobile.jpg',   // 휴대폰에서 보여줄 화면 (390x780)
-        'link'   => 'https://kir1.cafe24.com/user/',
-        'github' => 'https://github.com/ican243/Lambda',
-        'intro'  => '증권사 API로 코스피·코스닥 전 종목의 실시간 시세를 받아, 차트를 보며 모의투자를 할 수 있는 서비스입니다.',
-        'note'   => '시세를 받아오는 서버와 데이터 처리, 화면을 맡았고 자동매매 기능은 팀원이 맡았습니다. 모의투자 서비스라 실제 주문은 나가지 않으며, 가입 없이 체험 계정으로 바로 써 볼 수 있습니다.',
+    'notedot' => [
+        'title'  => 'notedot',
+        'badge'  => '1인 개발',
+        'tag'    => '예약·고객관리 서비스',
+        'desc'   => '미용실·필라테스·스터디룸처럼 예약 방식이 다른 매장을 하나로 운영하는 예약·고객관리 서비스입니다. 데모 매장에서 손님 예약과 관리자 화면을 바로 써 볼 수 있습니다.',
+        'stack'  => ['Laravel', 'MySQL', 'Node.js', 'Socket.IO'],
+        'image'  => 'assets/img/projects/notedot.jpg',
+        'mobile' => 'assets/img/projects/notedot-mobile.jpg',  // 휴대폰에서 보여줄 화면 (손님 예약, 390x780)
+        'link'   => 'https://kir1.cafe24.com/notedot/',
+        'github' => '',
+        'intro'  => '업종에 맞게 말과 예약 방식이 바뀌는 범용 예약·고객관리 서비스입니다. 손님은 휴대폰으로 예약하고, 매장은 관리자 화면에서 일정과 고객을 관리합니다.',
+        'note'   => '직접 기획하고 만든 데모 서비스이며, 결제와 문자 발송은 데모 모드로 동작합니다.',
         'shots'  => [
-            ['file' => 'assets/img/projects/lambda-main.jpg',   'caption' => '메인 화면'],
-            ['file' => 'assets/img/projects/lambda-detail.jpg', 'caption' => '종목 상세 (차트·호가)'],
-            ['file' => 'assets/img/projects/lambda-trade.jpg',  'caption' => '내 계좌 (체험 계정)'],
+            ['file' => 'assets/img/projects/notedot-main.jpg',     'caption' => '메인 화면'],
+            ['file' => 'assets/img/projects/notedot-calendar.jpg', 'caption' => '관리자 예약 캘린더'],
+            ['file' => 'assets/img/projects/notedot-dashboard.jpg', 'caption' => '관리자 대시보드'],
         ],
     ],
     'linkr' => [
@@ -44,6 +44,24 @@ $projects = [
             ['file' => 'assets/img/projects/linkr-stats.jpg',   'caption' => '통계 화면'],
             ['file' => 'assets/img/projects/linkr-payment.jpg', 'caption' => '결제 화면'],
             ['file' => 'assets/img/projects/linkr-admin.jpg',   'caption' => '관리자 화면'],
+        ],
+    ],
+    'lambda' => [
+        'title'  => '모아증권',
+        'badge'  => '2인 팀',
+        'tag'    => '실시간 주식 모의투자',
+        'desc'   => '증권사 API로 실시간 시세를 받아 모의투자를 할 수 있는 플랫폼입니다. 가입 없이 체험 계정으로 바로 써 볼 수 있습니다.',
+        'stack'  => ['PHP', 'Node.js', 'WebSocket', 'MySQL'],
+        'image'  => 'assets/img/projects/lambda.jpg',
+        'mobile' => 'assets/img/projects/lambda-mobile.jpg',   // 휴대폰에서 보여줄 화면 (390x780)
+        'link'   => 'https://kir1.cafe24.com/user/',
+        'github' => 'https://github.com/ican243/Lambda',
+        'intro'  => '증권사 API로 코스피·코스닥 전 종목의 실시간 시세를 받아, 차트를 보며 모의투자를 할 수 있는 서비스입니다.',
+        'note'   => '시세를 받아오는 서버와 데이터 처리, 화면을 맡았고 자동매매 기능은 팀원이 맡았습니다. 모의투자 서비스라 실제 주문은 나가지 않으며, 가입 없이 체험 계정으로 바로 써 볼 수 있습니다.',
+        'shots'  => [
+            ['file' => 'assets/img/projects/lambda-main.jpg',   'caption' => '메인 화면'],
+            ['file' => 'assets/img/projects/lambda-detail.jpg', 'caption' => '종목 상세 (차트·호가)'],
+            ['file' => 'assets/img/projects/lambda-trade.jpg',  'caption' => '내 계좌 (체험 계정)'],
         ],
     ],
     'livef' => [
