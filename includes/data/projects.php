@@ -27,6 +27,24 @@ $projects = [
             ['file' => 'assets/img/projects/notedot-dashboard.jpg', 'caption' => '관리자 대시보드'],
         ],
     ],
+    'kbc' => [
+        'title'  => 'KBC아카데미',
+        'badge'  => '외주 제작',
+        'tag'    => '교육기관 홈페이지',
+        'desc'   => '방송·크리에이터 교육기관의 홈페이지와 관리자입니다. 교육과정 안내와 상담 신청, 과정·강사·공지·문의 관리까지 만들었습니다.',
+        'stack'  => ['CodeIgniter 4', 'MySQL', 'PHP 8.3', 'Nginx'],
+        'image'  => 'assets/img/projects/kbc.jpg',
+        'mobile' => 'assets/img/projects/kbc-mobile.jpg',      // 휴대폰에서 보여줄 화면 (390x780)
+        'link'   => '',  // 정식 도메인 공개 후 연결
+        'github' => '',
+        'intro'  => '방송·크리에이터 교육기관의 공개 홈페이지와 관리자 화면을 함께 만든 외주 작업입니다. 방문자는 휴대폰으로 과정을 비교하고 상담을 신청하며, 운영자는 관리자 화면에서 문의와 홈페이지 내용을 관리합니다.',
+        'note'   => '고객사의 기획안을 바탕으로 만든 사이트입니다. 정식 공개 전이라 화면만 싣고, 관리자 화면은 고객 정보가 있어 싣지 않았습니다.',
+        'shots'  => [
+            ['file' => 'assets/img/projects/kbc-main.jpg',    'caption' => '첫 화면'],
+            ['file' => 'assets/img/projects/kbc-courses.jpg', 'caption' => '교육과정 비교'],
+            ['file' => 'assets/img/projects/kbc-contact.jpg', 'caption' => '상담 신청'],
+        ],
+    ],
     'linkr' => [
         'title'  => 'Linkr',
         'badge'  => '1인 개발',
