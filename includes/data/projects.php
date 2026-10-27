@@ -9,6 +9,24 @@
 // shots: 상세 페이지 화면 목록. 첫 장이 가장 크게 나온다. 파일이 없는 화면은 숨김
 // 상세 본문은 includes/projects/{slug}.php
 $projects = [
+    'cafe' => [
+        'title'  => 'MORROW COFFEE',
+        'badge'  => '1인 개발',
+        'tag'    => '카페 홈페이지',
+        'desc'   => '동네 카페 홈페이지와, 사장님이 메뉴·사진·영업시간을 직접 바꾸는 관리자 화면입니다. 손님은 휴대폰에서 메뉴를 보고 바로 전화하거나 길을 찾습니다.',
+        'stack'  => ['CodeIgniter 4', 'MySQL', 'PHP 8.3', '카카오맵'],
+        'image'  => 'assets/img/projects/cafe.jpg',
+        'mobile' => 'assets/img/projects/cafe-mobile.jpg',     // 휴대폰에서 보여줄 화면 (390x780)
+        'link'   => 'https://kir1.cafe24.com/cafe/',
+        'github' => 'https://github.com/ican243/morrow-cafe',
+        'intro'  => '손님이 보는 홈페이지와 사장님이 쓰는 관리자 화면을 함께 만든 카페 홈페이지입니다. 메뉴, 사진, 영업시간, 휴무일을 코드 없이 관리자 화면에서 바로 바꿉니다.',
+        'note'   => '직접 기획하고 만든 가상 매장입니다. 메뉴와 주소는 예시이며, 사진은 무료 사진(Unsplash)을 썼습니다.',
+        'shots'  => [
+            ['file' => 'assets/img/projects/cafe-main.jpg',     'caption' => '첫 화면'],
+            ['file' => 'assets/img/projects/cafe-menu.jpg',     'caption' => '메뉴'],
+            ['file' => 'assets/img/projects/cafe-location.jpg', 'caption' => '오시는 길 (카카오 지도)'],
+        ],
+    ],
     'notedot' => [
         'title'  => 'notedot',
         'badge'  => '1인 개발',
