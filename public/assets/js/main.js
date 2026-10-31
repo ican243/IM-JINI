@@ -133,3 +133,114 @@ document.querySelectorAll('[data-copy]').forEach((btn) => {
             });
     });
 });
+
+// 상세 페이지 사진 크게 보기: 누르면 어두운 화면에 크게, 좌우로 넘기기
+// 휴대폰 뒤로 가기를 누르면 페이지를 나가지 않고 사진만 닫히도록 기록을 하나 남긴다
+const zoomImages = [...document.querySelectorAll('.shot img')];
+
+if (zoomImages.length && window.HTMLDialogElement) {
+    const box = document.createElement('dialog');
+    box.className = zoomImages.length > 1 ? 'lightbox' : 'lightbox is-single';   // 1장이면 넘기기 버튼 숨김
+    box.setAttribute('aria-label', '사진 크게 보기');
+    box.innerHTML = `
+        <p class="lightbox-count"></p>
+        <div class="lightbox-stage"><img alt=""></div>
+        <p class="lightbox-caption"></p>
+        <button type="button" class="lightbox-btn lightbox-close" aria-label="닫기">&times;</button>
+        <button type="button" class="lightbox-btn lightbox-prev" aria-label="이전 사진">&lsaquo;</button>
+        <button type="button" class="lightbox-btn lightbox-next" aria-label="다음 사진">&rsaquo;</button>
+    `;
+    document.body.appendChild(box);
+
+    const boxImage = box.querySelector('.lightbox-stage img');
+    const srcOf = (img) => img.currentSrc || img.src;
+    let current = 0;
+
+    function showImage(index) {
+        current = (index + zoomImages.length) % zoomImages.length;
+        const img = zoomImages[current];
+        boxImage.src = srcOf(img);
+        boxImage.alt = img.alt;
+        box.querySelector('.lightbox-caption').textContent = img.closest('figure').querySelector('figcaption')?.textContent ?? '';
+        box.querySelector('.lightbox-count').textContent = `${current + 1} / ${zoomImages.length}`;
+        // 다음 사진을 미리 받아 둔다
+        new Image().src = srcOf(zoomImages[(current + 1) % zoomImages.length]);
+    }
+
+    function openBox(index) {
+        showImage(index);
+        history.pushState({ lightbox: true }, '');
+        document.documentElement.classList.add('lightbox-open');
+        box.showModal();
+    }
+
+    // 닫기는 모두 뒤로 가기로 통일 (아래 popstate 에서 실제로 닫는다)
+    const closeBox = () => history.back();
+
+    window.addEventListener('popstate', () => {
+        if (box.open) {
+            box.close();
+            document.documentElement.classList.remove('lightbox-open');
+        }
+    });
+
+    zoomImages.forEach((img, index) => {
+        img.classList.add('is-zoomable');
+        img.tabIndex = 0;
+        img.setAttribute('role', 'button');
+        img.setAttribute('aria-haspopup', 'dialog');
+        img.setAttribute('aria-label', `${img.alt} 크게 보기`);
+        img.addEventListener('click', () => openBox(index));
+        img.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                openBox(index);
+            }
+        });
+    });
+
+    box.querySelector('.lightbox-close').addEventListener('click', closeBox);
+    box.querySelector('.lightbox-prev').addEventListener('click', () => showImage(current - 1));
+    box.querySelector('.lightbox-next').addEventListener('click', () => showImage(current + 1));
+
+    // 사진 바깥을 누르면 닫기
+    box.addEventListener('click', (event) => {
+        if (event.target === box || event.target.classList.contains('lightbox-stage')) {
+            closeBox();
+        }
+    });
+
+    box.addEventListener('cancel', (event) => {
+        event.preventDefault();
+        closeBox();
+    });
+
+    box.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowLeft') {
+            showImage(current - 1);
+        } else if (event.key === 'ArrowRight') {
+            showImage(current + 1);
+        }
+    });
+
+    // 휴대폰: 옆으로 밀어서 넘기기 (두 손가락으로 확대한 상태에서는 넘기지 않음)
+    let touchX = null;
+    let touchY = 0;
+
+    box.addEventListener('touchstart', (event) => {
+        touchX = event.touches.length === 1 ? event.touches[0].clientX : null;
+        touchY = event.touches[0].clientY;
+    }, { passive: true });
+
+    box.addEventListener('touchend', (event) => {
+        if (touchX === null || (window.visualViewport && window.visualViewport.scale > 1.01)) {
+            return;
+        }
+        const dx = event.changedTouches[0].clientX - touchX;
+        const dy = event.changedTouches[0].clientY - touchY;
+        touchX = null;
+        if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
+            showImage(current + (dx < 0 ? 1 : -1));
+        }
+    }, { passive: true });
+}

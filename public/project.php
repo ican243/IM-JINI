@@ -18,6 +18,7 @@ $intro = $p['intro'] ?? $p['desc'];
 $shots = $p['shots'] ?? ($p['image'] ? [['file' => $p['image'], 'caption' => '메인 화면']] : []);
 // 아직 파일이 없는 화면은 숨긴다 (파일을 넣으면 자동으로 나타남)
 $shots = array_values(array_filter($shots, fn($s) => is_file(__DIR__ . '/' . $s['file'])));
+$admin_shots = array_values(array_filter($p['admin']['shots'] ?? [], fn($s) => is_file(__DIR__ . '/' . $s['file'])));
 
 $page_title = $p['title'];
 $page_desc  = $p['tag'] . ' - ' . $intro;
@@ -69,6 +70,21 @@ require INC_PATH . '/header.php';
                     </figure>
                 <?php endforeach; ?>
             </div>
+        <?php endif; ?>
+
+        <?php if ($admin_shots): ?>
+            <section class="admin-block">
+                <h2><?= e($p['admin']['title']) ?></h2>
+                <p><?= e($p['admin']['desc']) ?></p>
+                <div class="shots shots-rest-<?= count($admin_shots) - 1 ?>">
+                    <?php foreach ($admin_shots as $i => $s): ?>
+                        <figure class="shot<?= $i === 0 ? ' shot-main' : '' ?>">
+                            <?php shot($s, $p['title'], true); ?>
+                            <figcaption><?= e($s['caption']) ?></figcaption>
+                        </figure>
+                    <?php endforeach; ?>
+                </div>
+            </section>
         <?php endif; ?>
     </div>
 

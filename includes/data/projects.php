@@ -7,13 +7,14 @@
 // link: 사이트 주소, github: 저장소 주소 (비어 있으면 버튼 안 보임)
 // intro, note: 상세 페이지 머리의 한 줄 소개와 알림
 // shots: 상세 페이지 화면 목록. 첫 장이 가장 크게 나온다. 파일이 없는 화면은 숨김
+// admin: 관리자 모드 소개 (title, desc, shots). shots 는 위 shots 와 같은 방식 (첫 장이 크게)
 // 상세 본문은 includes/projects/{slug}.php
 $projects = [
     'cafe' => [
         'title'  => 'MORROW COFFEE',
         'badge'  => '1인 개발',
         'tag'    => '카페 홈페이지',
-        'desc'   => '동네 카페 홈페이지와, 사장님이 메뉴·사진·영업시간을 직접 바꾸는 관리자 화면입니다. 손님은 휴대폰에서 메뉴를 보고 바로 전화하거나 길을 찾습니다.',
+        'desc'   => '동네 카페 홈페이지와 사장님 전용 관리자 모드를 함께 만들었습니다. 메뉴·사진·영업시간을 코드 없이 직접 바꾸고, 손님은 휴대폰에서 메뉴를 보고 바로 전화하거나 길을 찾습니다.',
         'stack'  => ['CodeIgniter 4', 'MySQL', 'PHP 8.3', '카카오맵'],
         'image'  => 'assets/img/projects/cafe.jpg',
         'mobile' => 'assets/img/projects/cafe-mobile.jpg',     // 휴대폰에서 보여줄 화면 (390x780)
@@ -22,9 +23,26 @@ $projects = [
         'intro'  => '손님이 보는 홈페이지와 사장님이 쓰는 관리자 화면을 함께 만든 카페 홈페이지입니다. 메뉴, 사진, 영업시간, 휴무일을 코드 없이 관리자 화면에서 바로 바꿉니다.',
         'note'   => '직접 기획하고 만든 가상 매장입니다. 메뉴와 주소는 예시이며, 사진은 무료 사진(Unsplash)을 썼습니다.',
         'shots'  => [
-            ['file' => 'assets/img/projects/cafe-main.jpg',     'caption' => '첫 화면'],
-            ['file' => 'assets/img/projects/cafe-menu.jpg',     'caption' => '메뉴'],
-            ['file' => 'assets/img/projects/cafe-location.jpg', 'caption' => '오시는 길 (카카오 지도)'],
+            ['file' => 'assets/img/projects/cafe-main.jpg',      'caption' => '첫 화면'],
+            ['file' => 'assets/img/projects/cafe-signature.jpg', 'caption' => '대표 메뉴'],
+            ['file' => 'assets/img/projects/cafe-gallery.jpg',   'caption' => '매장 사진'],
+            ['file' => 'assets/img/projects/cafe-story.jpg',     'caption' => '브랜드 이야기'],
+            ['file' => 'assets/img/projects/cafe-menu.jpg',      'caption' => '메뉴'],
+            ['file' => 'assets/img/projects/cafe-news.jpg',      'caption' => '공지·이벤트'],
+            ['file' => 'assets/img/projects/cafe-location.jpg',  'caption' => '오시는 길 (카카오 지도)'],
+        ],
+        'admin'  => [
+            'title' => '사장님 전용 관리자 모드',
+            'desc'  => '사장님이 코드 없이 직접 고치는 화면입니다. 품절은 스위치로 바로 바꾸고, 가격은 목록에서 고치고, 메뉴 순서는 끌어서 옮깁니다. 매장에서 휴대폰으로도 쓸 수 있습니다.',
+            'shots' => [
+                ['file' => 'assets/img/projects/cafe-admin-menus.jpg',     'caption' => '메뉴 관리 (품절·가격·순서)'],
+                ['file' => 'assets/img/projects/cafe-admin-dashboard.jpg', 'caption' => '대시보드'],
+                ['file' => 'assets/img/projects/cafe-admin-new.jpg',       'caption' => '메뉴 추가'],
+                ['file' => 'assets/img/projects/cafe-admin-media.jpg',     'caption' => '사진 보관함'],
+                ['file' => 'assets/img/projects/cafe-admin-gallery.jpg',   'caption' => '매장 갤러리'],
+                ['file' => 'assets/img/projects/cafe-admin-hours.jpg',     'caption' => '영업시간·휴무일'],
+                ['file' => 'assets/img/projects/cafe-admin-mobile.jpg',    'caption' => '휴대폰 화면'],
+            ],
         ],
     ],
     'notedot' => [
